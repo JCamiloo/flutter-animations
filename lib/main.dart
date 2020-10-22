@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:headers/src/screens/slideshow_screen.dart';
+import 'package:headers/src/screens/pinterest_screen.dart';
  
 void main() => runApp(MyApp());
  
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Design App',
-      home: SlideShowPage()
+      home: PinterestScreen()
     );
   }
 }
