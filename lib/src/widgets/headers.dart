@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SquareHeader extends StatelessWidget {
 
@@ -254,5 +255,95 @@ class _HeaderGradientWavesPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
+  }
+}
+
+class IconHeader extends StatelessWidget {
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color primaryColor;
+  final Color accentColor;
+
+  const IconHeader({
+    @required this.icon,
+    @required this.title,
+    @required this.subtitle,
+    this.primaryColor = Colors.grey,
+    this.accentColor = Colors.blueGrey
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+  final Color whiteColor = Colors.white.withOpacity(0.8);
+
+    return Stack(
+      children: [
+        IconHeaderBackground(
+          primaryColor: this.primaryColor,
+          accentColor: this.accentColor
+        ),
+        Positioned(
+          top: -50,
+          left: -70,
+          child: FaIcon(this.icon, size: 250, color: Colors.white.withOpacity(0.2)),
+        ),
+        Column(
+          children: [
+            SizedBox(height: 80, width: double.infinity),
+            Text(
+              this.subtitle,
+              style: TextStyle(
+                fontSize: 20, 
+                color: whiteColor
+              )
+            ),
+            SizedBox(height: 20),
+            Text(
+              this.title,
+              style: TextStyle(
+                fontSize: 25,
+                color: whiteColor,
+                fontWeight: FontWeight.bold
+              )
+            ),
+            SizedBox(height: 20),
+            FaIcon(this.icon, size: 80, color: Colors.white),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class IconHeaderBackground extends StatelessWidget {
+
+  final Color primaryColor;
+  final Color accentColor;
+
+  const IconHeaderBackground({
+    @required this.primaryColor, 
+    @required this.accentColor
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 300,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(80)),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color> [
+            this.primaryColor,
+            this.accentColor
+          ]
+        )
+      ),
+    );
   }
 }
