@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:headers/src/theme/theme.dart';
-import 'package:headers/src/widgets/slideshow.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:headers/src/widgets/slideshow.dart';
+import 'package:headers/src/theme/theme.dart';
 
 class SlideShowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool isLarge;
+    final children = [
+      Expanded(child: CustomSlideshow()),
+      Expanded(child: CustomSlideshow())
+    ];
+
+    if (MediaQuery.of(context).size.height > 500) {
+      isLarge = true;
+    } else {
+      isLarge = false;
+    }
+
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(child: CustomSlideshow()),
-          Expanded(child: CustomSlideshow())
-        ],
-      ),
+      body: isLarge ? Column(children: children) : Row(children: children),
     );
   }
 }
